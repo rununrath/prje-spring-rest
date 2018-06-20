@@ -1,10 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: aycap
-  name: aycap-spring-rest
+  namespace: prje
+  name: prje-spring-rest
   labels:
-    app: aycap-spring-rest
+    app: prje-spring-rest
     type: jenkins-build
 spec:
   replicas: 3
@@ -16,10 +16,10 @@ spec:
   template:
     metadata:
       labels:
-        app: aycap-spring-rest
+        app: prje-spring-rest
     spec:
       containers:
-      - name: aycap-spring-rest
+      - name: prje-spring-rest
         image: <%= new_image %>
         env:
           - name: AYCAP_JDBC_URL
@@ -55,9 +55,9 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: aycap
-  name: aycap-spring-rest
+  name: prje-spring-rest
   labels:
-    app: aycap-spring-rest
+    app: prje-spring-rest
 spec:
   type: NodePort
   ports:
@@ -70,4 +70,4 @@ spec:
       protocol: TCP
       name: http-admin
   selector:
-    app: aycap-spring-rest
+    app: prje-spring-rest
